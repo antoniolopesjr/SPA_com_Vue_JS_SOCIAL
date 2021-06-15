@@ -3,7 +3,10 @@
 		<header>
 			<nav-bar color="indigo darken-1" logo="Social" url="/">
 				<li><router-link to="/">Home</router-link></li>
-				<li><router-link to="/login">Entrar</router-link></li>
+				<li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
+				<li v-if="!usuario"><router-link to="/cadastro">Cadastre-se</router-link></li>
+				<li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
+				<li v-if="usuario"><a v-on:click="sair()">Sair</a></li>
 			</nav-bar>
 		</header>
 		<main>
@@ -27,10 +30,10 @@
 			ano="2021"
 		>
 			<li>
-				<a class="grey-text text-lighten-3" href="#/">Home</a>
+				<router-link class="grey-text text-lighten-3" to="/">Home</router-link>
 			</li>
 			<li>
-				<a class="grey-text text-lighten-3" href="#/login">Entrar</a>
+				<router-link class="grey-text text-lighten-3" to="/login">Entrar</router-link>
 			</li>
 		</footer-vue>
 	</div>
@@ -44,11 +47,30 @@
 
 	export default {
 		name: "loginTemplate",
+		data() {
+			return {
+				usuario: false
+			}
+		},
 		components: {
 			NavBar,
 			FooterVue,
 			GridVue,
 			CardMenuVue,
+		},
+		created() {
+			let usuarioAux = sessionStorage.getItem('usuario');
+			if(usuarioAux) {
+				this.usuario = JSON.parse(usuarioAux);
+			}
+		},
+		methods: {
+			sair() {
+				console.log('sair')
+				sessionStorage.clear();
+				this.usuario = false;
+				//location.reload();
+			}
 		},
 	};
 </script>

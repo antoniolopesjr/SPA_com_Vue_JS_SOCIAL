@@ -4,6 +4,7 @@
 			<nav-bar color="indigo darken-1" logo="Social" url="/">
 				<li><router-link to="/">Home</router-link></li>
 				<li><router-link to="/login">Entrar</router-link></li>
+				<li><router-link to="/cadastro">Cadastre-se</router-link></li>
 			</nav-bar>
 		</header>
 		<main>
@@ -12,9 +13,6 @@
 					<grid-vue tamanho="4">
 						<card-menu-vue>
 							<slot name="menuesquerdo"></slot>
-						</card-menu-vue>
-						<card-menu-vue>
-							<h2>Teste</h2>
 						</card-menu-vue>
 					</grid-vue>
 					<grid-vue tamanho="8">
@@ -30,10 +28,10 @@
 			ano="2021"
 		>
 			<li>
-				<a class="grey-text text-lighten-3" href="#/">Home</a>
+				<router-link class="grey-text text-lighten-3" to="/">Home</router-link>
 			</li>
 			<li>
-				<a class="grey-text text-lighten-3" href="#/login">Entrar</a>
+				<router-link class="grey-text text-lighten-3" to="/login">Entrar</router-link>
 			</li>
 		</footer-vue>
 	</div>
