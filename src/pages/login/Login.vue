@@ -49,7 +49,8 @@
 						if(response.data.token) {
 							//sucesso
 							console.log('sucesso')
-							sessionStorage.setItem('usuario', JSON.stringify(response.data));						
+							sessionStorage.setItem('usuario', JSON.stringify(response.data));
+							this.$router.push('/');
 						} else if(response.data.status == false) {
 							//login nao existe
 							console.log('login nao existe');
